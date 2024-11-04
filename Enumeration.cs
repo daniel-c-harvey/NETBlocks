@@ -93,13 +93,13 @@ namespace Core
             return Id;
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
-            Enumeration<T> otherValue = obj as Enumeration<T>;
-            if (otherValue == null)
+            Enumeration<T>? otherValue = obj as Enumeration<T>;
+            if (otherValue is null)
                 return false;
 
-            return GetType().Equals(obj.GetType()) && Id.Equals(otherValue.Id);
+            return GetType().Equals(obj?.GetType()) && Id.Equals(otherValue.Id);
         }
 
         public static bool operator ==(Enumeration<T> o1, Enumeration<T> o2)

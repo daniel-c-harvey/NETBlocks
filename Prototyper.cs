@@ -12,7 +12,7 @@ namespace NetBlocks
         /// Create prototype objects (default initialized) for all derived types of the specified Type.
         /// </summary>
         public static IEnumerable<T> PrototypeDerivedTypes<T>()
-        where T : IClonable<T>
+        where T : ICloneable<T>
         {
             Type baseType = typeof(T);
             return baseType.Assembly.GetTypes()
