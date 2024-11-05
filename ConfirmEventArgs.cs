@@ -10,14 +10,14 @@ namespace Core
         public bool IsConfirmed { get; set; } = false;
     }
 
-    //public delegate void ConfirmEventHandler<T>(object sender, ConfirmEventArgs<T> e);
-    //public class ConfirmEventArgs<T> : ConfirmEventArgs
-    //{
-    //    public T NewValue { get; set; }
+    public delegate void ResultEventHandler<T>(object sender, ResultEventArgs<T> e);
+    public class ResultEventArgs<T>
+    {
+        public T Result { get; set; }
 
-    //    public ConfirmEventArgs(T newValue)
-    //    {
-    //        NewValue = newValue;
-    //    }
-    //}
+        public ResultEventArgs(T result)
+        {
+            Result = result;
+        }
+    }
 }

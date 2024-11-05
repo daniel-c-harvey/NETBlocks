@@ -2,7 +2,79 @@
 
 namespace Core
 {
+    [Serializable()]
+    public abstract class Enumeration : IComparable
+    {
+        public string Name { get; set; }
+        public int Id { get; set; }
 
+        protected Enumeration(int iID, string sName)
+        {
+            Id = iID;
+            Name = sName;
+        }
+
+        public override string ToString()
+        {
+            return Name;
+        }
+
+        public override int GetHashCode()
+        {
+            return Id;
+        }
+
+        public override bool Equals(object? obj)
+        {
+            Enumeration? otherValue = obj as Enumeration;
+            if (otherValue is null)
+                return false;
+
+            return GetType().Equals(obj?.GetType()) && Id.Equals(otherValue.Id);
+        }
+
+        public static bool operator ==(Enumeration o1, Enumeration o2)
+        {
+            if (o1 is null || o2 is null)
+                return false;
+
+            return o1.Equals(o2);
+        }
+
+        public static bool operator !=(Enumeration o1, Enumeration o2)
+        {
+            if (o1 is null || o2 is null)
+                return true;
+
+            return !o1.Equals(o2);
+        }
+
+        public int CompareTo(object other)
+        {
+            return Id.CompareTo(((Enumeration)other).Id);
+        }
+
+        //public static implicit operator int(Enumeration e)
+        //{
+        //    return e.Id;
+        //}
+
+        //public static explicit operator Enumeration(int id)
+        //{
+        //    return GetById(id);
+        //}
+
+        //public static implicit operator string(Enumeration e)
+        //{
+        //    return e.Name;
+        //}
+
+        //public static implicit operator Enumeration(string name)
+        //{
+        //    return GetByName(name);
+        //}
+
+    }
 
     [Serializable()]
     public abstract class Enumeration<T> : IComparable where T : Enumeration<T>
