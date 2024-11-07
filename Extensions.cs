@@ -1,4 +1,6 @@
 
+using System.Text;
+
 namespace Core
 {
     public static class EnumerableExtensions
@@ -49,6 +51,20 @@ namespace Core
         }
     }
         
+    public static class StringBuilderExtensions
+    {
+        public static string Substring(this StringBuilder sb, int startIndex, int endIndex)
+        {
+            StringBuilder result = new(endIndex - startIndex);
+
+            for (int i = startIndex; i < endIndex; i++)
+            {
+                result.Insert(i - startIndex, sb[i]);
+            }
+
+            return result.ToString();
+        }
+    }
 
     public class Counted<T>
     {
