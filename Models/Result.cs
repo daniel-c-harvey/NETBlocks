@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core
+namespace NetBlocks.Models
 {
     public abstract class Result<T> where T : Result<T>, new()
     {
@@ -45,12 +45,12 @@ namespace Core
             failures.Add(new ResultFailure(message));
             return (T)this;
         }
-        
+
     }
 
     public class Result : Result<Result> { /* type definition */ }
 
-    public class PagedResult : Result<PagedResult> 
+    public class PagedResult : Result<PagedResult>
     {
         public Page Page { get; private set; }
 

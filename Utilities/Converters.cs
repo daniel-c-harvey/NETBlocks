@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Converters
+namespace NetBlocks.Utilities
 {
     public class IntConverter
     {
@@ -13,7 +13,7 @@ namespace Core.Converters
             return value.ToString();
         }
 
-        public static int FromString(string value) 
+        public static int FromString(string value)
         {
             int result;
             if (int.TryParse(value, out result))

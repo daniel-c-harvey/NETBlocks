@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using System.Text;
 
-namespace Core
+namespace NetBlocks.Utilities
 {
     public class FileLoader
     {
@@ -9,7 +9,7 @@ namespace Core
         {
             if (source == null)
             {
-                throw new ArgumentException("Assembly not found.");    
+                throw new ArgumentException("Assembly not found.");
             }
 
             // Use the assembly and the resource name to access the resource stream
@@ -32,12 +32,12 @@ namespace Core
         {
             IEnumerable<string> fileNames = GetFilesOfType(directoryPath, fileExtension);
             var files = new List<StreamReader>(fileNames.Count());
-            
+
             foreach (string name in fileNames)
             {
                 files.Add(new StreamReader(File.OpenRead(name)));
             }
-            
+
             return files;
         }
         public static List<string> GetFilesOfType(string directoryPath, string fileExtension)

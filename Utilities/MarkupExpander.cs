@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
-namespace NetBlocks
+namespace NetBlocks.Utilities
 {
     public class Span
     {
@@ -56,7 +52,7 @@ namespace NetBlocks
 
         public void Expand(StringBuilder processor)
         {
-            foreach(Expansion? expansion in expansions.Select(eb => eb.Expansion))
+            foreach (Expansion? expansion in expansions.Select(eb => eb.Expansion))
             {
                 if (expansion != null)
                 {

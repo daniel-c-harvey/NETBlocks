@@ -1,6 +1,6 @@
 ﻿// https://docs.microsoft.com/en-us/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/enumeration-classes-over-enum-types
 
-namespace Core
+namespace NetBlocks.Utilities
 {
     [Serializable()]
     public abstract class Enumeration : IComparable

@@ -1,7 +1,7 @@
 
 using System.Text;
 
-namespace Core
+namespace NetBlocks.Utilities
 {
     public static class EnumerableExtensions
     {
@@ -31,7 +31,7 @@ namespace Core
 
         public static IEnumerable<TEntity> Apply<TEntity>(this IEnumerable<TEntity> enumerable, Action<TEntity> action)
         {
-            foreach(TEntity entity in enumerable)
+            foreach (TEntity entity in enumerable)
             {
                 action(entity);
             }
@@ -50,7 +50,7 @@ namespace Core
             return list;
         }
     }
-        
+
     public static class StringBuilderExtensions
     {
         public static string Substring(this StringBuilder sb, int startIndex, int endIndex)

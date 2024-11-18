@@ -1,12 +1,11 @@
-﻿
-namespace Core
+﻿namespace NetBlocks.Models
 {
     public delegate void ConfirmEventHandler(object sender, ConfirmEventArgs e);
     public class ConfirmEventArgs : EventArgs
     {
         public static ConfirmEventArgs Confirm = new() { IsConfirmed = true };
         public static ConfirmEventArgs Deny = new() { IsConfirmed = false };
-        
+
         public bool IsConfirmed { get; set; } = false;
     }
 

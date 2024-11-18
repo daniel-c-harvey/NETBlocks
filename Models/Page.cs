@@ -1,5 +1,4 @@
-﻿
-namespace Core
+﻿namespace NetBlocks.Models
 {
     public class Page
     {

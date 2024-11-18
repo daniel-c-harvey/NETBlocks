@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using NetBlocks.Interfaces;
 
-namespace NetBlocks
+namespace NetBlocks.Utilities
 {
     public static class Prototyper
     {
@@ -17,7 +13,7 @@ namespace NetBlocks
             Type baseType = typeof(T);
             return baseType.Assembly.GetTypes()
                                     .Where(t => t.IsSubclassOf(baseType) && !t.IsAbstract)
-                                    .Select(t => (T?)Activator.CreateInstance(t) 
+                                    .Select(t => (T?)Activator.CreateInstance(t)
                                                  ?? throw new Exception("Failed to create Prototypes"));
 
         }
