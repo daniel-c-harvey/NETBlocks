@@ -1,15 +1,18 @@
 using Newtonsoft.Json;
 
-namespace NetBlocks.Models
+namespace NetBlocks.Models.Environment
 {
     public class Connection
     {
         public long ID { get; set; } = 0;
-        public string Name { get; set; } = string.Empty;
+        public string ConnectionName { get; set; } = string.Empty;
+        public string DatabaseName { get; set; } = string.Empty;
         public string ConnectionString { get; set; } = string.Empty;
     }
+
     public class Connections
     {
+        public int ActiveConnectionID { get; set; } = 0;
         public IEnumerable<Connection> ConnectionStrings { get; set; } = [];
     }
 
@@ -31,7 +34,7 @@ namespace NetBlocks.Models
         public static Connection LoadFromFile(string filePathFromBase, string connectionName)
         {
             Connections? connections = LoadFromFile(filePathFromBase);
-            Connection? connection = connections?.ConnectionStrings.FirstOrDefault(c => c.Name == connectionName);
+            Connection? connection = connections?.ConnectionStrings.FirstOrDefault(c => c.ConnectionName == connectionName);
             return connection ?? throw new Exception($"Failed to load connection {connectionName}");
         }
 
