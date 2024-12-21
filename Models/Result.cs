@@ -6,22 +6,23 @@ using System.Threading.Tasks;
 
 namespace NetBlocks.Models
 {
+    public enum ResultState
+    {
+        Pass,
+        Fail
+    }
+
+    public class ResultFailure
+    {
+        public string Message { get; private set; }
+        public ResultFailure(string message)
+        {
+            Message = message;
+        }
+    }
+
     public abstract class Result<T> where T : Result<T>, new()
     {
-        public enum ResultState
-        {
-            Pass,
-            Fail
-        }
-
-        public class ResultFailure
-        {
-            public string Message { get; private set; }
-            public ResultFailure(string message)
-            {
-                Message = message;
-            }
-        }
 
         public ResultState State { get; private set; }
 
@@ -67,7 +68,7 @@ namespace NetBlocks.Models
 
     public class ResultContainer<T> : Result<ResultContainer<T>>
     {
-        public T Value { get; set; }
+        public T? Value { get; set; }
 
         public ResultContainer() : base() { }
 
