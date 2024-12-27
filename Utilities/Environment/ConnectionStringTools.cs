@@ -1,19 +1,24 @@
+using NetBlocks.Models.Environment;
 using Newtonsoft.Json;
 
-namespace NetBlocks.Models.Environment
+namespace NetBlocks.Utilities.Environment
 {
-    public class Connection
+    public class ConnectionStringLoader : IConnectionStringLoader
     {
-        public long ID { get; set; } = 0;
-        public string ConnectionName { get; set; } = string.Empty;
-        public string DatabaseName { get; set; } = string.Empty; // todo this shouldn't be in the same cardinality as the connection string, which is per server
-        public string ConnectionString { get; set; } = string.Empty;
-    }
+        public Connections? LoadFromFile(string filePathFromBase)
+        {
+            return ConnectionStringTools.LoadFromFile(filePathFromBase);
+        }
 
-    public class Connections
-    {
-        public int ActiveConnectionID { get; set; } = 0;
-        public IEnumerable<Connection> ConnectionStrings { get; set; } = [];
+        public Connection LoadFromFile(string filePathFromBase, string connectionName)
+        {
+            return ConnectionStringTools.LoadFromFile(filePathFromBase, connectionName);
+        }
+
+        public void SaveToFile(string filePathFromBase, Connections connections)
+        {
+            ConnectionStringTools.SaveToFile(filePathFromBase, connections);
+        }
     }
 
     public static class ConnectionStringTools
