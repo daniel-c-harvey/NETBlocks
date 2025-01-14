@@ -4,7 +4,7 @@ public class MediaContainer
 {
     public MediaBinary Binary { get; set; }
     public string FileName { get; set; }
-    public string FileURI => System.Web.HttpUtility.UrlEncode(FileName);
+    public string FileUri => System.Web.HttpUtility.UrlEncode(FileName);
 
     public MediaContainer(string name, MediaBinary binary)
     {
