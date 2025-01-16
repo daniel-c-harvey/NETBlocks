@@ -30,6 +30,7 @@ namespace NetBlocks.Models
 
         protected List<ResultFailure> failures = new List<ResultFailure>();
         public IEnumerable<ResultFailure> FailureReasons => failures;
+        public virtual string FailureMessage => FailureReasons.Aggregate(string.Empty, (s, failure) => s + System.Environment.NewLine + failure.Message);
 
         public static T CreatePassResult() { return new T { State = ResultState.Pass }; }
         public static T CreateFailResult(string message) { return new T().Fail(message); }
