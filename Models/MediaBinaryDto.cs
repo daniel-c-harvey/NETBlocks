@@ -10,11 +10,11 @@ namespace NetBlocks.Models
             {
                 Bytes = Convert.FromBase64String(mediaBinary.Base64),
                 Size = mediaBinary.Size,
-                Extension = mediaBinary.Extension
+                Mime = MIME.MimeTypes[mediaBinary.Extension]
             };
         }
         public byte[] Bytes { get; set; }
         public long Size { get; set; }
-        public string Extension { get; set; }
+        public string Mime { get; set; }
     }
 }

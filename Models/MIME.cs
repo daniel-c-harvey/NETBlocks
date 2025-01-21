@@ -2,7 +2,7 @@
 {
     public static class MIME
     {
-        public static readonly Dictionary<string, string> MIME_TYPES = new() 
+        public static readonly Dictionary<string, string> MimeTypes = new() 
         {
             { ".jpg", "image/jpeg" },
             { ".jpeg", "image/jpeg" },
@@ -13,7 +13,7 @@
             { ".bmp", "image/bmp" }
         };
 
-        public static readonly Dictionary<string, string> EXTENSIONS = new()
+        public static readonly Dictionary<string, string> Extensions = new()
         {
             { "image/jpeg", ".jpg" },
             { "image/png", ".png" },

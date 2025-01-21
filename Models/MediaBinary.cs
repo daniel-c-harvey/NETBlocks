@@ -14,7 +14,7 @@ namespace NetBlocks.Models
         {
             Base64 = Convert.ToBase64String(other.Bytes); // probably smart to make the API operate in base64 instead of byte arrays, it's much more compressed
             Size = other.Size;
-            Extension = other.Extension;
+            Extension = other.Mime;
         }
 
         public MediaBinary(byte[] data, long size, string extension)
