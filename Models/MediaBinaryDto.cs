@@ -13,8 +13,8 @@ namespace NetBlocks.Models
                 Extension = mediaBinary.Extension
             };
         }
-        public required byte[] Bytes { get; set; }
-        public required long Size { get; set; }
-        public required string Extension { get; set; }
+        public byte[] Bytes { get; set; }
+        public long Size { get; set; }
+        public string Extension { get; set; }
     }
 }

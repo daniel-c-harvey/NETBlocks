@@ -106,10 +106,6 @@ namespace NetBlocks.Utilities
                 GetAllInternal().ForEach(t => hs.Add(t));
                 m_oEnumerations = hs;
             }
-            else
-            {
-                m_oEnumerations.GetEnumerator().Reset();// TODO check if this is necessary?  do subsequent calls need this or is the enumerator regenerated every time the list is enumerated?
-            }
 
             return m_oEnumerations;
         }
