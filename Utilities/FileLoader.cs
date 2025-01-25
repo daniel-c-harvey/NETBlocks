@@ -12,15 +12,13 @@ namespace NetBlocks.Utilities
                 throw new ArgumentException("Assembly not found.");
             }
 
-            // Use the assembly and the resource name to access the resource stream
             using (Stream? stream = source.GetManifestResourceStream(resourceName))
             {
                 if (stream is null)
                 {
                     throw new ArgumentException($"Resource '{resourceName}' not found. Ensure it is set as an Embedded Resource.");
                 }
-
-                // Read the stream into a string and return it
+                
                 using (StreamReader reader = new StreamReader(stream, Encoding.UTF8))
                 {
                     return reader.ReadToEnd();
@@ -40,6 +38,7 @@ namespace NetBlocks.Utilities
 
             return files;
         }
+        
         public static List<string> GetFilesOfType(string directoryPath, string fileExtension)
         {
             List<string> files = new List<string>();

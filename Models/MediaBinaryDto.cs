@@ -8,12 +8,12 @@ namespace NetBlocks.Models
         {
             return new MediaBinaryDto
             {
-                Bytes = Convert.FromBase64String(mediaBinary.Base64),
+                Base64 = mediaBinary.Base64,
                 Size = mediaBinary.Size,
-                Mime = MIME.MimeTypes[mediaBinary.Extension]
+                Mime = mediaBinary.Mime
             };
         }
-        public byte[] Bytes { get; set; }
+        public string Base64 { get; set; }
         public long Size { get; set; }
         public string Mime { get; set; }
     }
