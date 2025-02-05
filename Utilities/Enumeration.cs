@@ -127,12 +127,12 @@ namespace NetBlocks.Utilities
             }
         }
 
-        public static T GetById(int iID)
+        public static T? GetById(int iID)
         {
             return GetAll().FirstOrDefault(item => item.Id == iID);
         }
 
-        public static T GetById(int? iID)
+        public static T? GetById(int? iID)
         {
             if (iID == null)
                 return null;
@@ -170,7 +170,7 @@ namespace NetBlocks.Utilities
             return GetType().Equals(obj?.GetType()) && Id.Equals(otherValue.Id);
         }
 
-        public static bool operator ==(Enumeration<T> o1, Enumeration<T> o2)
+        public static bool operator ==(Enumeration<T>? o1, Enumeration<T>? o2)
         {
             if (o1 is null || o2 is null)
                 return false;

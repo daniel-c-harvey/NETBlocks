@@ -73,6 +73,14 @@ namespace NetBlocks.Models
             return other;
         }
         
+        public static T From<TOther>(ResultBase<TOther> other) where TOther : ResultBase<TOther>, new()
+        {
+            var result = new T();
+            result.State = other.State;
+            result._messages.AddRange(other._messages);
+            return result;
+        }
+
         
         public abstract class ResultDtoBase<TResult, TDto> 
             where TResult : ResultBase<TResult>, new()
@@ -131,16 +139,35 @@ namespace NetBlocks.Models
         }
     }
 
-    public class ResultContainer<T> : ResultBase<ResultContainer<T>>
+    public class ResultContainerBase<TSelf, TContent> : ResultBase<TSelf>
+        where TSelf : ResultContainerBase<TSelf, TContent>, new()
     {
-        public T? Value { get; set; }
+        public TContent? Value { get; set; }
+        
+        public ResultContainerBase() : base() { }
 
-        public ResultContainer() : base() { }
-
-        public ResultContainer(T value) : base()
+        public ResultContainerBase(TContent value) : base()
         {
             Value = value;
         }
+
+        public static TSelf CreateSuccessResult(TContent value)
+        {
+            return CreatePassResult().SetValue(value);
+        }
+
+        private TSelf SetValue(TContent? value)
+        {
+            Value = value;
+            return (TSelf)this;
+        }
+    }
+
+    public class ResultContainer<T> : ResultContainerBase<ResultContainer<T>, T>
+    {
+        public ResultContainer() : base() { }
+
+        public ResultContainer(T value) : base(value) { }
         
         public class ResultContainerDto<TDto> : ResultDtoBase<ResultContainer<TDto>, ResultContainerDto<TDto>>
         {
@@ -152,7 +179,6 @@ namespace NetBlocks.Models
             {
                 if (result != null) Value = result.Value;
             }
-
 
             public override ResultContainer<TDto> From()
             {
