@@ -151,7 +151,7 @@ namespace NetBlocks.Models
             Value = value;
         }
 
-        public static TSelf CreateSuccessResult(TContent value)
+        public static TSelf CreatePassResult(TContent value)
         {
             return CreatePassResult().SetValue(value);
         }
