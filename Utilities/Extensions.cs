@@ -28,6 +28,11 @@ namespace NetBlocks.Utilities
         {
             return enumerable.Zip(Enumerable.Range(1, enumerable.Count())).Select(t => new Counted<TEntity> { Entity = t.First, Ordinal = t.Second });
         }
+        
+        public static IEnumerable<Selectable<TEntity>> ZipSelectable<TEntity>(this IEnumerable<TEntity> enumerable)
+        {
+            return enumerable.Select(t => new Selectable<TEntity> { Entity = t, Selected = t?.Equals(enumerable.FirstOrDefault()) ?? false });
+        }
 
         public static IEnumerable<TEntity> Apply<TEntity>(this IEnumerable<TEntity> enumerable, Action<TEntity> action)
         {
@@ -69,6 +74,12 @@ namespace NetBlocks.Utilities
     public class Counted<T>
     {
         public int Ordinal { get; set; }
+        public T Entity { get; set; } = default!;
+    }
+    
+    public class Selectable<T>
+    {
+        public bool Selected { get; set; } = default;
         public T Entity { get; set; } = default!;
     }
 }
