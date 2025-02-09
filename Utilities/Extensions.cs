@@ -26,9 +26,19 @@ namespace NetBlocks.Utilities
 
         public static IEnumerable<Counted<TEntity>> ZipCounted<TEntity>(this IEnumerable<TEntity> enumerable)
         {
-            return enumerable.Zip(Enumerable.Range(1, enumerable.Count())).Select(t => new Counted<TEntity> { Entity = t.First, Ordinal = t.Second });
+            return enumerable.ZipNumbered(1, enumerable.Count());
         }
         
+        public static IEnumerable<Counted<TEntity>> ZipIndexed<TEntity>(this IEnumerable<TEntity> enumerable)
+        {
+            return enumerable.ZipNumbered(0, enumerable.Count());
+        }
+
+        private static IEnumerable<Counted<TEntity>> ZipNumbered<TEntity>(this IEnumerable<TEntity> enumerable, int start, int end)
+        {
+            return enumerable.Zip(Enumerable.Range(start, end)).Select(t => new Counted<TEntity> { Entity = t.First, Ordinal = t.Second });
+        }
+
         public static IEnumerable<Selectable<TEntity>> ZipSelectable<TEntity>(this IEnumerable<TEntity> enumerable)
         {
             return enumerable.Select(t => new Selectable<TEntity> { Entity = t, Selected = t?.Equals(enumerable.FirstOrDefault()) ?? false });
