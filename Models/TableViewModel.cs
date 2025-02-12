@@ -16,19 +16,17 @@ namespace NetBlocks.Models
         int Index { get; }
     }
 
-    public interface INew
+    public interface IEditable
     {
         bool IsNew { get; set; }
-    }
-    
-    public interface IDirty
-    {
+        bool IsEditable { get; set; }
         bool IsDirty { get; set; }
     }
 
-    public class TableViewModel<T> : IIndexed, INew, IDirty, IValue<T>
+    public class TableViewModel<T> : IIndexed, IEditable, IValue<T>
     {
         public int Index { get; }
+        public bool IsEditable { get; set; } = false;
         public bool IsNew { get; set; } = false;
         public bool IsDirty { get; set; } = false;
         public T Value { get; set; }
