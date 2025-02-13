@@ -2,17 +2,15 @@ using NetBlocks.Models;
 
 namespace NetBlocks.Utilities;
 
-public class DataExchange<TRequestArgs, TSubmitArgs, TResult> : ExchangeBase<TRequestArgs, TResult>
+public abstract class DataExchangeBase<TRequestArgs, TSubmitArgs, TResult> : ExchangeBase<TRequestArgs, TResult>
 {
-    public Func<Task> Trigger { get; }
     private Action<TRequestArgs, Action<TSubmitArgs>> WhenRequested { get; }
     private Func<TSubmitArgs, TResult> WhenSubmitted { get; }
     
     public event Event.EventBase? Requested;
-    
-    public DataExchange(Func<Task> trigger, Action<TRequestArgs, Action<TSubmitArgs>> whenRequested, Func<TSubmitArgs, TResult> whenSubmitted)
+
+    protected DataExchangeBase(Action<TRequestArgs, Action<TSubmitArgs>> whenRequested, Func<TSubmitArgs, TResult> whenSubmitted)
     {
-        Trigger = trigger;
         WhenRequested = whenRequested;
         WhenSubmitted = whenSubmitted;
     }
@@ -26,5 +24,37 @@ public class DataExchange<TRequestArgs, TSubmitArgs, TResult> : ExchangeBase<TRe
     {
         WhenRequested(args, Submit);
         Requested?.Invoke();
+    }
+}
+
+public class DataExchange<TRequestArgs, TSubmitArgs, TResult> : DataExchangeBase<TRequestArgs, TSubmitArgs, TResult>
+{
+    private readonly Func<Task> _trigger;
+
+    public DataExchange(Func<Task> trigger, Action<TRequestArgs, Action<TSubmitArgs>> whenRequested, Func<TSubmitArgs, TResult> whenSubmitted)
+        : base(whenRequested, whenSubmitted)
+    {
+        _trigger = trigger;
+    }
+
+    public Task ExecuteTrigger()
+    {
+        return _trigger();
+    }
+}
+
+public class DataExchange<TChoiceArgs, TRequestArgs, TSubmitArgs, TResult> : DataExchangeBase<TRequestArgs, TSubmitArgs, TResult>
+{
+    private readonly Func<TChoiceArgs, Task> _trigger;
+
+    public DataExchange(Func<TChoiceArgs, Task> trigger, Action<TRequestArgs, Action<TSubmitArgs>> whenRequested, Func<TSubmitArgs, TResult> whenSubmitted)
+        : base(whenRequested, whenSubmitted)
+    {
+        _trigger = trigger;
+    }
+
+    public Task ExecuteTrigger(TChoiceArgs args)
+    {
+        return _trigger(args);
     }
 }
