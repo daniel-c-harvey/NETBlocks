@@ -52,6 +52,13 @@ namespace NetBlocks.Models
             return (T)this;
         }
 
+        public T Inform(string message)
+        {
+            State = State.Merge(ResultState.Pass);
+            _messages.Add(new ResultMessage(message));
+            return (T)this;
+        }
+
         public virtual string GetMessage()
         {
             return Messages.Aggregate(string.Empty, (s, failure) 
