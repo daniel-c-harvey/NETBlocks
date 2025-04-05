@@ -10,14 +10,7 @@
         {
             this.config = config;
             http = new HttpClient();
-            try
-            {
-                http.BaseAddress = new Uri(config.URL);
-            }
-            catch (Exception e)
-            {
-                throw;
-            }
+            http.BaseAddress = new Uri(config.URL);
         }
     }
 }
