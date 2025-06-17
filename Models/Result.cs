@@ -88,7 +88,6 @@ namespace NetBlocks.Models
             return result;
         }
 
-        
         public abstract class ResultDtoBase<TResult, TDto> 
             where TResult : ResultBase<TResult>, new()
             where TDto : ResultDtoBase<TResult, TDto>
