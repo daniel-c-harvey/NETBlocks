@@ -32,27 +32,27 @@ namespace NetBlocks.Models
         public static T CreatePassResult() { return new T { State = ResultState.Pass }; }
         public static T CreateFailResult(string message) { return new T().Fail(message); }
 
-        public T Pass()
+        public virtual T Pass()
         {
             State = ResultState.Pass;
             return (T)this;
         }
 
-        public T Fail(string message)
+        public virtual T Fail(string message)
         {
             State = State.Merge(ResultState.Fail);
             _messages.Add(new ResultMessage(message));
             return (T)this;
         }
         
-        public T Warn(string message)
+        public virtual T Warn(string message)
         {
             State = State.Merge(ResultState.Warn);
             _messages.Add(new ResultMessage(message));
             return (T)this;
         }
 
-        public T Inform(string message)
+        public virtual T Inform(string message)
         {
             State = State.Merge(ResultState.Pass);
             _messages.Add(new ResultMessage(message));
@@ -66,14 +66,14 @@ namespace NetBlocks.Models
         }
 
         
-        public T Merge(T other)
+        public virtual T Merge(T other)
         {
             State = State.Merge(other.State);
             _messages.AddRange(other._messages);
             return (T)this;
         }
 
-        public T MergeInto(T other)
+        public virtual T MergeInto(T other)
         {
             other.State = State.Merge(other.State);
             other._messages.AddRange(_messages);
