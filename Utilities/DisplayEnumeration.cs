@@ -6,6 +6,6 @@ public class DisplayEnumeration<T> : Enumeration<T> where T : DisplayEnumeration
     
     protected DisplayEnumeration(int id, string name, string disaplyName) : base(id, name)
     {
-        DisplayName = name;
+        DisplayName = disaplyName;
     }
 }
