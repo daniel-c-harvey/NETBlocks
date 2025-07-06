@@ -1,5 +1,16 @@
 ﻿namespace NetBlocks.Models;
 
+public class ApiResult : ResultBase<ApiResult>
+{ }
+
+public class ApiResultDto : ResultBase<ApiResult>.ResultDtoBase<ApiResult, ApiResultDto>
+{
+    public ApiResultDto() : base() { }
+
+    public ApiResultDto(ApiResult? result) : base(result) { }
+}
+
+
 public class ApiResult<T> : ResultContainerBase<ApiResult<T>, T>
 {
     public ApiResult() : base() { }
