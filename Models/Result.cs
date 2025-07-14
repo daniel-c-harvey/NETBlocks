@@ -32,6 +32,16 @@ namespace NetBlocks.Models
         public static T CreatePassResult() { return new T { State = ResultState.Pass }; }
         public static T CreateFailResult(string message) { return new T().Fail(message); }
 
+        public static T CreateFailResult(string[] messages)
+        {
+            var result = new T();
+            foreach (var message in messages)
+            {
+                result.Fail(message);
+            }
+            return result;
+        }
+
         public virtual T Pass()
         {
             State = ResultState.Pass;
