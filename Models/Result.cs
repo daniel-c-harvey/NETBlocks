@@ -172,6 +172,14 @@ namespace NetBlocks.Models
             return CreatePassResult().SetValue(value);
         }
 
+        public static TSelf From<TOther>(ResultContainerBase<TOther, TContent> other)
+            where TOther : ResultContainerBase<TOther, TContent>, new()
+        {
+            var result = ResultBase<TSelf>.From(other);
+            result.Value = other.Value;
+            return result;
+        }
+
         private TSelf SetValue(TContent? value)
         {
             Value = value;
