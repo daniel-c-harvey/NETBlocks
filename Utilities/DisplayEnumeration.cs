@@ -4,8 +4,8 @@ public class DisplayEnumeration<T> : Enumeration<T> where T : DisplayEnumeration
 {
     public string DisplayName { get; init; }
     
-    protected DisplayEnumeration(int id, string name, string disaplyName) : base(id, name)
+    protected DisplayEnumeration(int id, string name, string displayName) : base(id, name)
     {
-        DisplayName = disaplyName;
+        DisplayName = displayName;
     }
 }

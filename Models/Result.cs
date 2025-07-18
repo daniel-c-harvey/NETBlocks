@@ -186,6 +186,27 @@ namespace NetBlocks.Models
             return (TSelf)this;
         }
     }
+    
+    public class ResultContainerDtoBase<TSelf, TResult, TDto> : ResultBase<TResult>.ResultDtoBase<TResult, TSelf>
+        where TSelf : ResultContainerDtoBase<TSelf, TResult, TDto>, new()
+        where TResult : ResultContainerBase<TResult, TDto>, new()
+    {
+        public TDto? Value { get; set; }
+        
+        public ResultContainerDtoBase() : base() { }
+        
+        public ResultContainerDtoBase(TResult? result) : base(result)
+        {
+            if (result != null) Value = result.Value;
+        }
+
+        public override TResult From()
+        {
+            var result = base.From();
+            result.Value = Value;
+            return result;
+        }
+    }
 
     public class ResultContainer<T> : ResultContainerBase<ResultContainer<T>, T>
     {
@@ -193,22 +214,14 @@ namespace NetBlocks.Models
 
         public ResultContainer(T value) : base(value) { }
         
-        public class ResultContainerDto<TDto> : ResultDtoBase<ResultContainer<TDto>, ResultContainerDto<TDto>>
+        public class ResultContainerDto<TDto> : ResultContainerDtoBase<ResultContainerDto<TDto>, ResultContainer<TDto>, TDto>
         {
-            public TDto? Value { get; set; }
         
             public ResultContainerDto() : base() { }
         
             public ResultContainerDto(ResultContainer<TDto>? result) : base(result)
             {
                 if (result != null) Value = result.Value;
-            }
-
-            public override ResultContainer<TDto> From()
-            {
-                var result = base.From();
-                result.Value = Value;
-                return result;
             }
         }
     }
