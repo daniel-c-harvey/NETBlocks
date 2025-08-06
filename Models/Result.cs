@@ -179,6 +179,13 @@ namespace NetBlocks.Models
             result.Value = other.Value;
             return result;
         }
+        public static TSelf From<TOther>(ResultBase<TOther> other, TContent otherContent)
+            where TOther : ResultBase<TOther>, new()
+        {
+            var result = ResultBase<TSelf>.From(other);
+            result.Value = otherContent;
+            return result;
+        }
 
         private TSelf SetValue(TContent? value)
         {
