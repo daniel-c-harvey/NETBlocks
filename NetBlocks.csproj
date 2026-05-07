@@ -1,13 +1,39 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <TargetFrameworks>net8.0;net10.0;net9.0</TargetFrameworks>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
   </ItemGroup>
 
+  <PropertyGroup>
+    <PackageId>Cerebellum.NetBlocks</PackageId>
+    <Version>10.1.1</Version>
+    <Authors>Daniel Harvey</Authors>
+    <Company>Cerebellum Softworks</Company>
+    <Description>A collection of reusable .NET building blocks: Result/ApiResult types for explicit success/failure flows, DDD-style Enumeration base classes, media/binary DTOs, environment and connection-string configuration loaders, JSON serializer preprocessing, debouncers, and assorted helpers used across Cerebellum Softworks projects.</Description>
+    <PackageTags>dotnet;infrastructure;utilities;result;enumeration;ddd;cerebellum</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/daniel-c-harvey/NETBlocks</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/daniel-c-harvey/NETBlocks.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryBranch>main</RepositoryBranch>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageIcon>csw-brain-4-favicon.png</PackageIcon>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
+    <None Include="csw-brain-4-favicon.png" Pack="true" PackagePath="\" />
+  </ItemGroup>
+  
 </Project>
