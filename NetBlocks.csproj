@@ -7,13 +7,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="NetBlocks.Tests\**" />
+    <None Remove="NetBlocks.Tests\**" />
+    <EmbeddedResource Remove="NetBlocks.Tests\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
   </ItemGroup>
 
   <PropertyGroup>
     <PackageId>Cerebellum.NetBlocks</PackageId>
-    <Version>10.1.1</Version>
+    <Version>10.2.0</Version>
     <Authors>Daniel Harvey</Authors>
     <Company>Cerebellum Softworks</Company>
     <Description>A collection of reusable .NET building blocks: Result/ApiResult types for explicit success/failure flows, DDD-style Enumeration base classes, media/binary DTOs, environment and connection-string configuration loaders, JSON serializer preprocessing, debouncers, and assorted helpers used across Cerebellum Softworks projects.</Description>
