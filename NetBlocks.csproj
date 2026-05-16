@@ -10,6 +10,9 @@
     <Compile Remove="NetBlocks.Tests\**" />
     <None Remove="NetBlocks.Tests\**" />
     <EmbeddedResource Remove="NetBlocks.Tests\**" />
+    <Compile Remove="Models.Shared\**" />
+    <None Remove="Models.Shared\**" />
+    <EmbeddedResource Remove="Models.Shared\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,12 +22,12 @@
 
   <PropertyGroup>
     <PackageId>Cerebellum.NetBlocks</PackageId>
-    <Version>10.2.0</Version>
+    <Version>10.3.0</Version>
     <Authors>Daniel Harvey</Authors>
     <Company>Cerebellum Softworks</Company>
     <Description>A collection of reusable .NET building blocks: Result/ApiResult types for explicit success/failure flows, DDD-style Enumeration base classes, media/binary DTOs, environment and connection-string configuration loaders, JSON serializer preprocessing, debouncers, and assorted helpers used across Cerebellum Softworks projects.</Description>
     <PackageTags>dotnet;infrastructure;utilities;result;enumeration;ddd;cerebellum</PackageTags>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageLicenseExpression>AGPL-3.0-or-later</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/daniel-c-harvey/NETBlocks</PackageProjectUrl>
     <RepositoryUrl>https://github.com/daniel-c-harvey/NETBlocks.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
