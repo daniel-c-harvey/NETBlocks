@@ -22,21 +22,23 @@ dotnet pack NetBlocks.csproj -c Release -o $OutDir
 Write-Host 'Packing Cerebellum.NetBlocks.Models...'
 dotnet pack Models.Shared/Models.Shared.csproj -c Release -o $OutDir
 
+# Read version from NetBlocks.csproj
+$csproj = [xml](Get-Content 'NetBlocks.csproj')
+$Version = $csproj.Project.PropertyGroup | Where-Object { $_.Version } | Select-Object -ExpandProperty Version
+
 # Push main packages
 Write-Host 'Pushing .nupkg files to nuget.org...'
 dotnet nuget push "nupkgs/*.nupkg" `
     --api-key $ApiKey `
-    --source https://api.nuget.org/v3/index.json `
-    --skip-duplicate
+    --source https://api.nuget.org/v3/index.json
 
 # Push symbol packages
 Write-Host 'Pushing .snupkg files to nuget.org...'
 dotnet nuget push "nupkgs/*.snupkg" `
     --api-key $ApiKey `
-    --source https://api.nuget.org/v3/index.json `
-    --skip-duplicate
+    --source https://api.nuget.org/v3/index.json
 
 Write-Host ''
 Write-Host 'Done. Published to nuget.org:'
-Write-Host '  Cerebellum.NetBlocks 10.3.0'
-Write-Host '  Cerebellum.NetBlocks.Models 10.3.0'
+Write-Host "  Cerebellum.NetBlocks $Version"
+Write-Host "  Cerebellum.NetBlocks.Models $Version"
